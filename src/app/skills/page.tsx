@@ -1,16 +1,11 @@
 "use client";
 
 import SkillDrawer from "@/components/SkillDrawer";
-import theme from "@/theme";
 import { Box } from "@mui/material";
 import Link from "next/link";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-type TSkillProps = {};
-
-export default function Skills({
-  children,
-}: PropsWithChildren<TSkillProps>) {
+export default function Skills() {
   const [render, setRender] = useState(0);
 
   useEffect(() => {

@@ -2,14 +2,7 @@
 
 import { Box } from "@mui/material";
 import { Application } from "@splinetool/runtime";
-import React, {
-  Fragment,
-  ReactFragment,
-  Suspense,
-  SyntheticEvent,
-  useRef,
-  useTransition,
-} from "react";
+import React, { Suspense, useRef, useTransition } from "react";
 
 const Spline = React.lazy(() => import("@splinetool/react-spline"));
 export default function Home() {

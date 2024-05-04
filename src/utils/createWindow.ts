@@ -54,7 +54,7 @@ const createWindow = <S extends SkillGroup>({
       { length: Math.ceil(tmp.length / pageLength) },
       (_, i) => {
         const start = i * pageLength;
-        return tmp.slice(start, start + pageLength);
+        return (tmp as TSkill<S>[]).slice(start, start + pageLength);
       }
     );
   }

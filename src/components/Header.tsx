@@ -53,7 +53,7 @@ const Header = ({ pages }: { pages: string[] }) => {
             Mass
           </Typography>
         </Box>
-        <Links />
+        <Links pages={pages} />
         {currentPage !== "home" && <Avatar src={avatar} alt="BC" />}
       </Toolbar>
     </AppBar>

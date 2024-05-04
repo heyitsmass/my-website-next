@@ -18,6 +18,7 @@ import metadata from "@/metadata";
 import theme from "@/theme";
 import MassIcon from "@/components/MassIcon";
 import locatePages from "@/utils/fetchPages";
+import { Metadata } from "next";
 
 const styles = {
   root: "rounded-b-md",
