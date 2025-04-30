@@ -1,39 +1,16 @@
-"use client";
+'use client';
 
-import { Box } from "@mui/material";
-import { Application } from "@splinetool/runtime";
-import React, { Suspense, useRef, useTransition } from "react";
+import { lazy, Suspense, useRef } from 'react';
+import Spline from '@splinetool/react-spline/next';
 
-const Spline = React.lazy(() => import("@splinetool/react-spline"));
+import { cache } from 'react';
+
+const RunSpline = lazy(async () => {
+	return {
+		default: () => <Spline scene={'/scene.splinecode'} />,
+	};
+});
+
 export default function Home() {
-  const spline = useRef<Application | null>();
-
-  const [e, startTransition] = useTransition();
-
-  const isDev =
-    typeof window !== "undefined" &&
-    window.location.hostname === "localhost";
-
-  return (
-    <Box
-      component="a"
-      className="h-full"
-      onDoubleClick={(e) =>
-        isDev && (window.location.pathname = "/skills")
-      }
-    >
-      <Suspense fallback={null}>
-        <Spline
-          scene={
-            "https://prod.spline.design/XIX-j7jHWkT-QRqR/scene.splinecode"
-          }
-          onLoad={(app) =>
-            startTransition(() => {
-              spline.current = app;
-            })
-          }
-        />
-      </Suspense>
-    </Box>
-  );
+	return <section className="w-full">{<RunSpline />}</section>;
 }

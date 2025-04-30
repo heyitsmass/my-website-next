@@ -1,0 +1,56 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="colorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" rx="15" fill="#1E293B" />
+  
+  <!-- Color palette visualization -->
+  <g transform="translate(200, 150)" filter="url(#glow)">
+    <!-- Grid of color swatches -->
+    <g transform="translate(-90, -50)">
+      <!-- Row 1 - Blues -->
+      <rect x="0" y="0" width="30" height="30" rx="4" fill="#BFDBFE" />
+      <rect x="35" y="0" width="30" height="30" rx="4" fill="#93C5FD" />
+      <rect x="70" y="0" width="30" height="30" rx="4" fill="#60A5FA" />
+      <rect x="105" y="0" width="30" height="30" rx="4" fill="#3B82F6" />
+      <rect x="140" y="0" width="30" height="30" rx="4" fill="#2563EB" />
+      
+      <!-- Row 2 - Purples -->
+      <rect x="0" y="35" width="30" height="30" rx="4" fill="#E9D5FF" />
+      <rect x="35" y="35" width="30" height="30" rx="4" fill="#D8B4FE" />
+      <rect x="70" y="35" width="30" height="30" rx="4" fill="#C084FC" />
+      <rect x="105" y="35" width="30" height="30" rx="4" fill="#A855F7" />
+      <rect x="140" y="35" width="30" height="30" rx="4" fill="#9333EA" />
+      
+      <!-- Row 3 - Greens -->
+      <rect x="0" y="70" width="30" height="30" rx="4" fill="#BBF7D0" />
+      <rect x="35" y="70" width="30" height="30" rx="4" fill="#86EFAC" />
+      <rect x="70" y="70" width="30" height="30" rx="4" fill="#4ADE80" />
+      <rect x="105" y="70" width="30" height="30" rx="4" fill="#22C55E" />
+      <rect x="140" y="70" width="30" height="30" rx="4" fill="#16A34A" />
+    </g>
+    
+    <!-- Color picker visualization -->
+    <g transform="translate(100, -30)">
+      <circle cx="0" cy="0" r="25" fill="url(#colorGradient)" />
+      <line x1="-8" y1="-8" x2="8" y2="8" stroke="white" stroke-width="2" />
+      <line x1="8" y1="-8" x2="-8" y2="8" stroke="white" stroke-width="2" />
+    </g>
+    
+    <!-- Color code representation -->
+    <rect x="60" y="20" width="80" height="20" rx="5" fill="#0F172A" stroke="url(#colorGradient)" stroke-width="1" />
+    <text x="100" y="34" font-family="monospace" font-size="10" fill="white" text-anchor="middle">#8B5CF6</text>
+  </g>
+  
+  <!-- Text
+  <text x="200" y="260" font-family="monospace" font-size="24" fill="white" text-anchor="middle">COLOR</text> -->
+</svg>

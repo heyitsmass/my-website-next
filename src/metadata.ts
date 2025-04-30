@@ -20,7 +20,7 @@ export default {
   ],
   title: "HeyItsMass",
   robots: "index, follow",
-  viewport: "width=device-width, initial-scale=1",
+  //viewport: "width=device-width, initial-scale=1",
   verification: {
     me: `-----BEGIN PGP PUBLIC KEY BLOCK-----
     mDMEZddXSBYJKwYBBAHaRw8BAQdAjDltaIlKFgYg3nCePTqqh9gqOy/iWjubPpma

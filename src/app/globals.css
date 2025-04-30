@@ -3,29 +3,39 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --foreground-rgb: @apply text-zinc-900;
-  --background-rgb: #fefefe;
+    color-scheme: dark;
+    --foreground: @apply text-zinc-900;
+    --background: @apply bg-zinc-50;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: @apply text-zinc-300;
-    --background-rgb: #121212;
-  }
+    :root {
+        --foreground: @apply text-zinc-300;
+        --background: @apply bg-zinc-900
+    }
 }
 
-body {
-  color: var(--foreground-rgb);
-  background: var(--background-rgb);
+html {
+
+    background: var(--background);
+    display: flex;
+    height: 100dvh;
+    width: 100dvw;
+    justify-content: center;
+
+    * {
+        color: var(--foreground);
+    }
 }
+
+
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
 
 .skillBadge {
-  color: -webkit-linear-gradient(#a04a4a, #ff0000) !important;
+    color: -webkit-linear-gradient(#a04a4a, #ff0000) !important;
 }

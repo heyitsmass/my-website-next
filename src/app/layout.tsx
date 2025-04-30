@@ -1,71 +1,64 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import "./globals.css";
+import './globals.css';
 
-import {
-  AppBar,
-  Box,
-  Container,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { sourceCodePro } from '@/fonts';
+import metadata from '@/metadata';
+import { BoxesIcon, CircleUserRoundIcon, HouseIcon, LucideProps, PickaxeIcon, type LucideIcon } from 'lucide-react';
+import Link from 'next/link';
 
-import Links from "@/components/Links";
-import { damion, roboto } from "@/fonts";
-import metadata from "@/metadata";
-import theme from "@/theme";
-import MassIcon from "@/components/MassIcon";
-import locatePages from "@/utils/fetchPages";
-import { Metadata } from "next";
+type TIconLink = { Icon: LucideIcon; href: string; text: string } & Partial<LucideProps>;
 
-const styles = {
-  root: "rounded-b-md",
-  body: "h-full border border-solid absolute left-0 right-0",
+const IconLink = ({ Icon, href, children, text, ...props }: TIconLink) => {
+	const id = `${text.toLowerCase()}-link`;
+	return (
+		<>
+			<Link id={id} href={href} className="flex items-center gap-1">
+				<title itemProp={id}>{text}</title>
+				<Icon {...props}></Icon>
+				{text}
+			</Link>
+		</>
+	);
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const pages = await locatePages();
+const links: TIconLink[] = [
+	{ Icon: HouseIcon, href: '/', strokeWidth: 1.75, text: 'Home' },
+	{
+		Icon: BoxesIcon,
+		href: '/projects',
+		strokeWidth: 1,
+		text: 'Projects',
+	},
+	{
+		Icon: PickaxeIcon,
+		href: '/skills',
+		strokeWidth: 1,
+		text: 'Skills',
+	},
+	{
+		Icon: CircleUserRoundIcon,
+		href: '/me',
+		strokeWidth: 1,
+		text: 'Me',
+	},
+];
 
-  return (
-    <html lang="en" id="__next">
-      <body className={roboto.className}>
-        <AppRouterCacheProvider
-          options={{
-            enableCssLayer: true,
-          }}
-        >
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Container
-              maxWidth="xl"
-              disableGutters
-              className={styles.root}
-              sx={{
-                height: "100vh",
-                maxHeight: "100%",
-              }}
-            >
-              <Box
-                component="main"
-                className="hover:cursor-pointer h-full"
-                sx={{
-                  position: "relative",
-                }}
-              >
-                {children}
-              </Box>
-            </Container>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
-    </html>
-  );
+export default function RootLayout({
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>) {
+	return (
+		<html lang="en" id="__next" className={sourceCodePro.className}>
+			<body className="grid grid-rows-[auto_1fr] max-w-6xl w-full place-self-center justify-items-center gap-4 h-full">
+				<header className="bg-zinc-800 border-zinc-700 shadow-md max-w-6xl w-full h-12 border border-solid rounded-xl flex items-center px-8 gap-12 *:no-underline">
+					{links.map((link) => (
+						<IconLink key={link.text} {...link} size={16} />
+					))}
+				</header>
+				<main className="flex h-full w-full justify-center">{children}</main>
+			</body>
+		</html>
+	);
 }
 
 export { metadata };
