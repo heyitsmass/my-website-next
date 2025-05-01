@@ -58,12 +58,12 @@ export type Project = {
 	imageSrc?: string;
 	status?: TStatus;
 	projectUrl?: string | null;
-	codeUrl?: string | null;
 	tags?: string[];
 };
 // Main project card component with dark theme and gradients
-export default function ProjectCard({ name, description, status = 0, codeUrl = null, tags = [] }: Project) {
+export default function ProjectCard({ name, description, status = 0, tags = [] }: Project) {
 	const [isHovered, setIsHovered] = useState(false);
+	const urlName = name.toLowerCase();
 
 	return (
 		<div className="rounded-md grid grid-rows-[auto,_1fr] bg-zinc-800 border-zinc-700 shadow-md">
@@ -77,7 +77,7 @@ export default function ProjectCard({ name, description, status = 0, codeUrl = n
 						className={`object-cover transition-all duration-700 filter ${
 							isHovered ? 'scale-110 blur-sm' : 'scale-100'
 						}`}
-						src={`/project-icons/${name.toLowerCase()}.svg`}
+						src={`/project-icons/${urlName}.svg`}
 						alt={name}
 						fill
 					/>
@@ -88,22 +88,19 @@ export default function ProjectCard({ name, description, status = 0, codeUrl = n
 					>
 						<div className="flex gap-4">
 							<Link
-								href={`/projects/${name.toLowerCase()}`}
+								href={`/projects/${urlName}`}
 								className="contents text-white hover:shadow-lg transition-all duration-300"
 							>
 								<ExternalLink size={20} />
 							</Link>
-
-							{codeUrl && (
-								<a
-									href={codeUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="contents bg-gradient-to-r from-blue-700 to-blue-500 rounded-full text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
-								>
-									<SiGithub title="Github" size={20} />
-								</a>
-							)}
+							<Link
+								href={`https://github.com/heyitsmass/${urlName}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="contents text-white hover:shadow-lg transition-all duration-300"
+							>
+								<SiGithub title="Github" size={20} />
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -114,7 +111,7 @@ export default function ProjectCard({ name, description, status = 0, codeUrl = n
 				<p className="text-sm leading-relaxed pb-4 text-slate-300">{description}</p>
 				<div className="flex gap-2 h-max flex-wrap items-center">
 					{tags.map((tag) => (
-						<Badge text={tag} />
+						<Badge key={tag} text={tag} />
 					))}
 				</div>
 				<StatusIndicator status={status} />

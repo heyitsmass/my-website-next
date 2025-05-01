@@ -1,5 +1,6 @@
-import { SiNestjs, SiReact } from '@icons-pack/react-simple-icons';
+import { IconType, SiNestjs, SiReact } from '@icons-pack/react-simple-icons';
 import { Code, Cpu, Database, Globe, LineChart, type LucideIcon } from 'lucide-react';
+import { use } from 'react';
 
 // Map of skill types to their respective icons
 const skillIcons = {
@@ -10,16 +11,15 @@ const skillIcons = {
 	analytics: LineChart,
 };
 
-type SkillBadgeProps = {
+export type SkillBadgeProps = {
 	name: string;
-	icon: LucideIcon;
+	icon?: IconType;
 	rating?: number;
 	years?: number;
-	color?: string;
 	type?: keyof typeof skillIcons;
 };
 
-const Rating = ({ rating = 4, color = '#3b82f6' }: Pick<SkillBadgeProps, 'rating' | 'color'>) => {
+const Rating = ({ rating = 4, color = '#3b82f6' }: Pick<SkillBadgeProps, 'rating'> & { color: string }) => {
 	return Array.from({ length: rating + 1 }).map((_, i) => {
 		const isActive = i < rating;
 		return (
@@ -37,16 +37,19 @@ export default function SkillBadge({
 	years = 3,
 	rating = 4,
 	type = 'code',
-	color = '#3b82f6', // Default blue
 	icon: Icon,
-}: SkillBadgeProps) {
+	color: Color,
+}: SkillBadgeProps & {
+	color: Promise<string>;
+}) {
+	const color = use(Color);
 	// Cap rating between 1-5
 	const safeRating = Math.min(5, Math.max(1, rating));
 	// Get the appropriate icon component
 	const IconComponent = skillIcons[type];
 
 	return (
-		<div className="w-48 h-48 p-6 rounded-lg shadow-md bg-zinc-800 flex flex-col items-center justify-between relative overflow-hidden transition-all duration-300 hover:shadow-lg">
+		<div className="w-48 h-48 p-6 rounded-lg shadow-md bg-zinc-900 flex flex-col items-center justify-between relative overflow-hidden transition-all duration-300 hover:shadow-lg">
 			{/* Accent color top bar */}
 			<div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: color }} />
 
@@ -68,7 +71,7 @@ export default function SkillBadge({
 				className="w-16 h-16 rounded-full flex items-center justify-center mb-6"
 				style={{ backgroundColor: `${color}10` }} // Very light version of the color
 			>
-				<Icon size={32} color={color} />
+				{Icon && <Icon size={32} color={color} />}
 			</div>
 
 			{/* Rating visualization */}
@@ -84,16 +87,5 @@ export default function SkillBadge({
 	);
 }
 
-type SkillGroup = 'languages' | 'frameworks' | 'integrations' | 'tools' | 'databases' | 'analytics';
-
-const skills: { [k in SkillGroup]: SkillBadgeProps[] } = {
-	languages: [],
-	frameworks: [],
-	integrations: [],
-	tools: [],
-	databases: [],
-	analytics: [],
-};
-
 // Export the showcase example as default
-export { SkillBadge, skills };
+export { SkillBadge };

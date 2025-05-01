@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
 
-export default function Page({ children }: PropsWithChildren) {
+export default function Page() {
 	return (
 		<section className="px-4 border border-solid border-zinc-700 shadow-md w-full  rounded-md bg-zinc-800 h-max">
-			<h2>Hi, I'm Brandon</h2>
+			<h2>Hi, I&apos;m Brandon</h2>
 			<div className="flex flex-col gap-2">
 				<section>
 					<p>Full stack engineer. I like to build things.</p>
@@ -12,13 +12,13 @@ export default function Page({ children }: PropsWithChildren) {
 					</p>
 				</section>
 				<p>
-					I got my start during college while earning my B.S.C building small API's as a junior developer making
+					I got my start during college while earning my B.S.C building small API&apos;junior developer making
 					internal tools to optimize performance and reduce training overhead.
 				</p>
-				<p>From there I've branched out further building full stack applications using multiple different techniques.</p>
+				<p>From there I&apos;ve branched out further building full stack applications using multiple different techniques.</p>
 				<section>
 					<p>
-						I've primarily worked on integrating frontend interfaces in the ecommerce space and designing robust UX
+						I&apos;ve primarily worked on integrating frontend interfaces in the ecommerce space and designing robust UX
 						for companies like <b>Gucci</b>, <b>Armani</b>, <b>Valentino</b>, <b>Pucci</b>, and other large brands
 						delivering consistent and exceptional implementations.
 					</p>
@@ -39,7 +39,7 @@ export default function Page({ children }: PropsWithChildren) {
 					</p>
 					<p>
 						With a huge understanding of accessibility, semantic HTML, responsive design patterns, and elegant
-						backends; I can gaurentee we can find a solution and if we can't, we'll build it ourselves.
+						backends; I can gaurentee we can find a solution and if we can&apos;t, we&apos;ll build it ourselves.
 					</p>
 				</section>
 				<p>
