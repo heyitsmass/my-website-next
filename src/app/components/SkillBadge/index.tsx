@@ -1,15 +1,9 @@
-import { IconType, SiNestjs, SiReact } from '@icons-pack/react-simple-icons';
-import { Code, Cpu, Database, Globe, LineChart, type LucideIcon } from 'lucide-react';
+import { skillIcons } from '@/app/data/const';
+import { IconType } from '@icons-pack/react-simple-icons';
 import { use } from 'react';
+import Rating from './Rating';
 
 // Map of skill types to their respective icons
-const skillIcons = {
-	code: Code,
-	data: Database,
-	web: Globe,
-	ai: Cpu,
-	analytics: LineChart,
-};
 
 export type SkillBadgeProps = {
 	name: string;
@@ -17,32 +11,18 @@ export type SkillBadgeProps = {
 	rating?: number;
 	years?: number;
 	type?: keyof typeof skillIcons;
-};
-
-const Rating = ({ rating = 4, color = '#3b82f6' }: Pick<SkillBadgeProps, 'rating'> & { color: string }) => {
-	return Array.from({ length: rating + 1 }).map((_, i) => {
-		const isActive = i < rating;
-		return (
-			<div
-				key={i.toString()}
-				className={`h-2 w-8 rounded-full transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-30'}`}
-				style={{ backgroundColor: isActive ? color : '#e5e7eb' }}
-			/>
-		);
-	});
+	color: Promise<string>;
 };
 
 export default function SkillBadge({
-	name = 'React',
+	name,
 	years = 3,
 	rating = 4,
 	type = 'code',
 	icon: Icon,
-	color: Color,
-}: SkillBadgeProps & {
-	color: Promise<string>;
-}) {
-	const color = use(Color);
+	color: colorPromise,
+}: SkillBadgeProps) {
+	const color = use(colorPromise);
 	// Cap rating between 1-5
 	const safeRating = Math.min(5, Math.max(1, rating));
 	// Get the appropriate icon component
@@ -86,6 +66,3 @@ export default function SkillBadge({
 		</div>
 	);
 }
-
-// Export the showcase example as default
-export { SkillBadge };

@@ -11,8 +11,12 @@ const nextConfig = {
 		];
 	},
 	images: {
-		dangerouslyAllowSVG: true,
-		contentDispositionType: 'attachment',
+		remotePatterns: [
+			{
+				hostname: 'images.credly.com',
+				protocol: 'https',
+			},
+		],
 		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 	},
 };
