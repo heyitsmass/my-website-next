@@ -1,71 +1,52 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import "./globals.css";
+import './globals.scss';
 
-import {
-  AppBar,
-  Box,
-  Container,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { sourceCodePro } from '@/fonts';
+import metadata from '@/metadata';
+import { BoxesIcon, CircleUserRoundIcon, HouseIcon, PickaxeIcon } from 'lucide-react';
+import { IconLink } from './components';
+import { IconLinkProps } from './components/IconLink';
 
-import Links from "@/components/Links";
-import { damion, roboto } from "@/fonts";
-import metadata from "@/metadata";
-import theme from "@/theme";
-import MassIcon from "@/components/MassIcon";
-import locatePages from "@/utils/fetchPages";
-import { Metadata } from "next";
+const links: IconLinkProps[] = [
+	{ Icon: HouseIcon, href: '/', strokeWidth: 1.75, text: 'Home' },
+	{
+		Icon: BoxesIcon,
+		href: '/projects',
+		strokeWidth: 1,
+		text: 'Projects',
+	},
+	{
+		Icon: PickaxeIcon,
+		href: '/skills',
+		strokeWidth: 1,
+		text: 'Skills',
+	},
+	{
+		Icon: CircleUserRoundIcon,
+		href: '/me',
+		strokeWidth: 1,
+		text: 'Me',
+	},
+];
 
-const styles = {
-  root: "rounded-b-md",
-  body: "h-full border border-solid absolute left-0 right-0",
-};
-
-export default async function RootLayout({
-  children,
+export default function RootLayout({
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  const pages = await locatePages();
-
-  return (
-    <html lang="en" id="__next">
-      <body className={roboto.className}>
-        <AppRouterCacheProvider
-          options={{
-            enableCssLayer: true,
-          }}
-        >
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Container
-              maxWidth="xl"
-              disableGutters
-              className={styles.root}
-              sx={{
-                height: "100vh",
-                maxHeight: "100%",
-              }}
-            >
-              <Box
-                component="main"
-                className="hover:cursor-pointer h-full"
-                sx={{
-                  position: "relative",
-                }}
-              >
-                {children}
-              </Box>
-            </Container>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" id="__next" className={sourceCodePro.className}>
+			<body className="p-4 gap-6 grid grid-rows-[auto_1fr] w-full justify-items-center overflow-hidden">
+				<header className="box-border bg-zinc-800 px-4 border-zinc-700 shadow-md w-full h-12 border border-solid rounded-xl inline-flex items-center gap-12 *:no-underline">
+					{links.map((link) => (
+						<IconLink key={link.text} {...link} size={16} />
+					))}
+				</header>
+				<main className="box-border flex h-full w-full justify-center relative overflow-x-hidden overflow-y-scroll">
+					{children}
+				</main>
+			</body>
+		</html>
+	);
 }
 
 export { metadata };
