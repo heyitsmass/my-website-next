@@ -1,6 +1,7 @@
 import { ArrowRight, Code, ExternalLink, Github, Linkedin, Mail, Menu, Palette, Users, X, Zap } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
+import MassIcon from "./Icon";
 
 function App() {
 	const [scrollY, setScrollY] = useState(0);
@@ -244,7 +245,7 @@ function App() {
 					/>
 				</div>
 
-				<div className="relative z-10 text-center max-w-5xl mx-auto px-6">
+				<div className="relative z-10 text-center max-w-5xl mx-auto px-6 flex flex-col items-center">
 					<div
 						className="mb-8"
 						style={{
@@ -267,7 +268,7 @@ function App() {
 					</div>
 
 					<div
-						className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+						className="grid grid-cols-2 grid-rows-2 sm:flex-row gap-6 items-center *:w-max *:justify-center w-max"
 						style={{
 							transform: `translate3d(0, ${scrollY * 0.1}px, 0)`,
 							opacity: Math.max(0, 1 - scrollY / (windowHeight * 0.9)),
@@ -275,16 +276,23 @@ function App() {
 					>
 						<button
 							onClick={() => scrollToSection("portfolio")}
-							className="group bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 flex items-center gap-3"
+							className="justify-self-end group bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 flex items-center gap-3"
 						>
 							View My Work
 							<ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
 						</button>
 						<button
 							onClick={() => scrollToSection("contact")}
-							className="group border-2 border-zinc-700 hover:border-indigo-400 text-zinc-300 hover:text-indigo-400 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+							className="!w-full justify-self-start  group border-2 border-zinc-700 hover:border-indigo-400 text-zinc-300 hover:text-indigo-400 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
 						>
 							Get In Touch
+						</button>
+						<button
+							onClick={() => scrollToSection("portfolio")}
+							className="justify-self-center col-span-full !w-full group bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 flex items-center gap-3"
+						>
+							Massive Development
+							<MassIcon height={24} />
 						</button>
 					</div>
 				</div>
@@ -568,7 +576,7 @@ function App() {
 						<h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-indigo-300 bg-clip-text text-transparent leading-16">
 							Let's Create Together
 						</h2>
-						<div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-indigo-400 mx-auto mb-8" />
+						<div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-indigo-400 mx-auto mb-12" />
 						<p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
 							Ready to bring your next project to life? I'm always excited to work on challenging problems with
 							innovative teams.
