@@ -259,7 +259,7 @@ function App() {
 							</span>
 						</h1>
 						<h2 className="text-2xl md:text-3xl text-zinc-300 mb-6 font-light">
-							Full Stack Engineer / Web UI Designer
+							Full Stack Engineer / Web UI & UX Designer
 						</h2>
 						<p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
 							Crafting digital experiences that bridge user needs with business goals through
