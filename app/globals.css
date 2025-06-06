@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+
+:root {
+    body {
+        background: #121212;
+        @apply h-full w-screen;
+    }
+
+
+
+
+}
+
+
+@theme {
+    @keyframes scroll {
+        0% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+}
+
+@layer utilities {
+
+    .animate-scroll {
+        will-change: transform;
+        animation: scroll 45s linear infinite;
+
+    }
+
+    .animate-scroll:hover {
+        animation-play-state: paused;
+    }
+
+    .m-loader-container {
+        --duration: 2s;
+        --segment-count: 8;
+        --increment: calc(var(--duration) / var(--segment-count));
+        --current: currentColor;
+        --timing-function: ease-in-out;
+        --inactive-color: #4a4a4a;
+        --active-color: var(--current, #25b09b);
+    }
+
+    .m-logo-loader {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .m-segment {
+        fill: var(--active-color);
+    }
+
+    .m-segment-overlay {
+        fill: #4a4a4a;
+        /* Inactive color for segments */
+        animation-name: highlight-loader-segment;
+        animation-duration: var(--duration);
+        /* Duration for one segment's pulse */
+        animation-iteration-count: infinite;
+        animation-timing-function: var(--timing-function);
+    }
+
+    @keyframes highlight-loader-segment {
+
+        0%,
+        100% {
+            fill: var(--inactive-color);
+        }
+
+        30%,
+        70% {
+            fill: var(--active-color);
+        }
+    }
+
+    #m-segment-overlay-1 {
+        animation-delay: 0s;
+    }
+
+    #m-segment-overlay-2 {
+        animation-delay: var(--increment);
+    }
+
+    #m-segment-overlay-3 {
+        animation-delay: calc(var(--increment) * 2);
+    }
+
+    #m-segment-overlay-4 {
+        animation-delay: calc(var(--increment) * 3);
+    }
+
+    #m-segment-overlay-5 {
+        animation-delay: calc(var(--increment) * 4);
+    }
+
+    #m-segment-overlay-6 {
+        animation-delay: calc(var(--increment) * 5);
+    }
+
+    #m-segment-overlay-7 {
+        animation-delay: calc(var(--increment) * 6);
+    }
+
+    #m-segment-overlay-8 {
+        animation-delay: calc(var(--increment) * 7);
+    }
+
+    .m-loader-outline {
+        fill: none;
+        stroke: #231f20;
+        stroke-width: 2;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+    }
+}
