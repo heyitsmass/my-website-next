@@ -1,12 +1,18 @@
 import { hydrate, prerender as ssr } from 'preact-iso';
+import { Footer } from './components/Footer';
+import { Hero } from './components/Hero';
+import { Nav } from './components/Nav';
 import './styles.css';
 
 export function App() {
 	return (
-		<main class="min-h-screen bg-cream font-display text-ink">
-			<span class="text-ink-soft">Hello from Preact</span>
-			<span class="text-ink-faint">Design tokens active</span>
-		</main>
+		<div class="min-h-screen bg-cream text-ink">
+			<Nav />
+			<main>
+				<Hero />
+			</main>
+			<Footer />
+		</div>
 	);
 }
 
