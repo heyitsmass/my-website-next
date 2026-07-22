@@ -24,8 +24,9 @@ export function Nav() {
 				</div>
 				<button
 					type="button"
-					class="md:hidden"
+					class="-m-2 p-2 md:hidden"
 					aria-expanded={open}
+					aria-controls="mobile-menu"
 					aria-label={open ? 'Close menu' : 'Open menu'}
 					onClick={() => setOpen(!open)}
 				>
@@ -57,7 +58,7 @@ export function Nav() {
 				</button>
 			</nav>
 			{open && (
-				<div class="border-t border-hairline px-6 pb-4 md:hidden">
+				<div id="mobile-menu" class="border-t border-hairline px-6 pb-4 md:hidden">
 					{links.map((l) => (
 						<a
 							key={l.href}

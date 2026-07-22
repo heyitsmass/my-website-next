@@ -1,12 +1,13 @@
 import { companies, type Company } from '../data/companies';
 
-function LogoTile({ company }: { company: Company }) {
+function LogoTile({ company, hidden }: { company: Company; hidden?: boolean }) {
 	return (
 		<a
 			href={company.href}
 			target="_blank"
 			rel="noopener noreferrer"
 			title={company.label}
+			tabindex={hidden ? -1 : undefined}
 			class="flex h-12 shrink-0 items-center px-8"
 		>
 			{company.logo ? (
@@ -36,12 +37,15 @@ export function Brands() {
 			</div>
 
 			<div class="group mt-10 overflow-hidden motion-reduce:hidden">
-				<div class="flex w-max animate-marquee items-center group-hover:[animation-play-state:paused]">
-					{[...companies, ...companies].map((c, i) => (
-						<div key={`${c.label}-${i}`} aria-hidden={i >= companies.length}>
-							<LogoTile company={c} />
-						</div>
-					))}
+				<div class="flex w-max animate-marquee items-center group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
+					{[...companies, ...companies].map((c, i) => {
+						const hidden = i >= companies.length;
+						return (
+							<div key={`${c.label}-${i}`} aria-hidden={hidden ? true : undefined}>
+								<LogoTile company={c} hidden={hidden} />
+							</div>
+						);
+					})}
 				</div>
 			</div>
 

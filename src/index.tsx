@@ -25,6 +25,9 @@ export function App() {
 }
 
 if (typeof window !== 'undefined') {
+	// Reveal-hiding CSS is gated on this class; add it only once the bundle that
+	// can un-hide sections is actually running, so a failed load never blanks content.
+	document.documentElement.classList.add('js');
 	hydrate(<App />, document.getElementById('app')!);
 }
 

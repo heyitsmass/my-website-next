@@ -16,3 +16,6 @@
 
 # brainstorm artifacts
 .superpowers/
+
+# generated knowledge graph
+graphify-out/
