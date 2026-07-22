@@ -1,4 +1,5 @@
 import { hydrate, prerender as ssr } from 'preact-iso';
+import { Brands } from './components/Brands';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Nav } from './components/Nav';
@@ -10,6 +11,7 @@ export function App() {
 			<Nav />
 			<main>
 				<Hero />
+				<Brands />
 			</main>
 			<Footer />
 		</div>
