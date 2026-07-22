@@ -53,7 +53,7 @@ SVGs — no icon library.
 
 ## Visual system
 
-- **Palette:** page `#f5f1ea` (cream), card `#fffdf9`, ink `#1c1917`, muted `#57534e` / `#a8a29e`,
+- **Palette:** page `#f5f1ea` (cream), card `#fffdf9`, ink `#1c1917`, muted `#57534e` / `#6b6560`,
   hairlines `#e7e0d3`. Defined as Tailwind v4 `@theme` tokens.
 - **Type:** serif display via system serif stack (Georgia et al. — no webfont); system-ui sans for
   body. Italic accent on the surname per mockup.

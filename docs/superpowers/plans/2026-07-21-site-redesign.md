@@ -253,12 +253,15 @@ Warm-minimal tokens per spec. `--color-*` entries become `bg-cream`, `text-ink`,
 ```css
 @import 'tailwindcss';
 
+@source not "../docs";
+@source not "../graphify-out";
+
 @theme {
 	--color-cream: #f5f1ea;
 	--color-card: #fffdf9;
 	--color-ink: #1c1917;
 	--color-ink-soft: #57534e;
-	--color-ink-faint: #a8a29e;
+	--color-ink-faint: #6b6560;
 	--color-hairline: #e7e0d3;
 
 	--font-display: Georgia, 'Times New Roman', serif;
