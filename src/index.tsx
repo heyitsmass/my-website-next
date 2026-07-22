@@ -1,8 +1,10 @@
 import { hydrate, prerender as ssr } from 'preact-iso';
 import { Brands } from './components/Brands';
+import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Nav } from './components/Nav';
+import { Work } from './components/Work';
 import './styles.css';
 
 export function App() {
@@ -12,6 +14,8 @@ export function App() {
 			<main>
 				<Hero />
 				<Brands />
+				<Work />
+				<Contact />
 			</main>
 			<Footer />
 		</div>
