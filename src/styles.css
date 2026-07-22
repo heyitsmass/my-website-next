@@ -2,5 +2,49 @@
 
 @theme {
 	--color-cream: #f5f1ea;
+	--color-card: #fffdf9;
 	--color-ink: #1c1917;
+	--color-ink-soft: #57534e;
+	--color-ink-faint: #a8a29e;
+	--color-hairline: #e7e0d3;
+
+	--font-display: Georgia, 'Times New Roman', serif;
+
+	--animate-marquee: marquee 45s linear infinite;
+
+	@keyframes marquee {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* Section reveals: hidden only when JS is present; useReveal() adds .reveal-visible */
+.js .reveal {
+	opacity: 0;
+	transform: translateY(16px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.js .reveal-visible {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.js .reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
 }
