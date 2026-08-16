@@ -14,8 +14,17 @@ There is no test suite. Verify changes with `bun run build` + `bun run preview`.
 ## What this is
 
 A single-page portfolio site (Brandon Cannon / heyitsmass) built on Vite + Preact + Tailwind CSS
-v4, prerendered to static HTML at build time. Deployed on Cloudflare Pages (build command
-`bun run build`, output `dist/`).
+v4, prerendered to static HTML at build time. Deployed on Cloudflare Pages (project
+`heyitsmass-dev`, build command `bun run build`, output `dist/`).
+
+## Deployment
+
+Pushing to `main` auto-deploys: `.github/workflows/deploy.yml` builds with bun and runs
+`wrangler pages deploy dist --project-name=heyitsmass-dev`. Just commit and push to `main` —
+do not run `wrangler pages deploy` manually; that bypasses the build-verification step CI gives
+you and was only used before this workflow existed. The workflow needs the
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repo secrets (already set); it can also be
+re-run manually via `gh workflow run deploy.yml` or `workflow_dispatch`.
 
 ## Architecture
 
