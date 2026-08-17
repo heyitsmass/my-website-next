@@ -9,7 +9,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `bun run build` — prerendered static build to `dist/`
 - `bun run preview` — serve `dist/` with prerender-aware middleware (http://localhost:4173)
 
-There is no test suite. Verify changes with `bun run build` + `bun run preview`.
+There is no test suite. Verify changes with `bun run build` + `bun run preview`. That preview
+server doesn't run Cloudflare Pages Functions, though — to exercise the markdown content
+negotiation, use `bunx wrangler pages dev dist` instead and check both a plain request and one
+sent with `-H "Accept: text/markdown"`.
 
 ## What this is
 
@@ -44,6 +47,16 @@ re-run manually via `gh workflow run deploy.yml` or `workflow_dispatch`.
   by an inline script in `index.html`, so no-JS visitors see all content;
   `prefers-reduced-motion` disables marquee and reveals (static logo grid fallback).
 - Preact idiom: use `class`, not `className`.
+- **Markdown for agents:** `bun run build` runs `scripts/generate-markdown.mjs` after `vite
+  build`, converting the prerendered `dist/index.html` (`<main>` + `<footer>`) into
+  `dist/index.md` via `turndown`/`linkedom`. `functions/index.js` is a Cloudflare Pages Function
+  scoped by file-based routing to the `/` route only; it returns that markdown (with
+  `Content-Type: text/markdown` and an `x-markdown-tokens` header) when the request's `Accept`
+  header contains `text/markdown`, and falls through to the static HTML otherwise. Keep this
+  scoped to `/` rather than a catch-all `_middleware.js` — this site has exactly one route, and a
+  broader middleware would intercept `Accept: text/markdown` on static assets too (images, CSS,
+  robots.txt) rather than just the page. If more routes/pages are ever added, extend
+  `generate-markdown.mjs` and the function routing together.
 
 ## Style
 

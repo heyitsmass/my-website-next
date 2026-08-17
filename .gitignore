@@ -4,6 +4,9 @@
 # build output
 /dist
 
+# wrangler local dev state
+/.wrangler
+
 # misc
 .DS_Store
 *.pem
